@@ -19,3 +19,14 @@ Branches:
 - feature/metrics
 
 Initial commit includes: Maven setup, JUnit5, CI, README.
+
+## Step 2: Metrics Implementation
+
+In this step, we added basic metrics support:
+- Counters to track events.
+- Depth tracker for monitoring nesting levels.
+- CSV writer for exporting metrics data.
+
+These components provide the foundation for collecting and analyzing performance statistics.  
+You can run the tests in `MetricsTest` and `CsvWriterTest` to verify the implementation.
+
