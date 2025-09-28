@@ -13,7 +13,7 @@ class mergesorttest {
         int[] arr = {5, 2, 9, 1, 3};
         int[] expected = arr.clone();
         Arrays.sort(expected);
-        mergeSort.sort(arr);
+        mergesort.sort(arr);
         assertArrayEquals(expected, arr);
     }
 
@@ -21,7 +21,7 @@ class mergesorttest {
     void testAlreadySorted() {
         int[] arr = {1, 2, 3, 4, 5};
         int[] expected = arr.clone();
-        mergeSort.sort(arr);
+        mergesort.sort(arr);
         assertArrayEquals(expected, arr);
     }
 
@@ -32,7 +32,7 @@ class mergesorttest {
         int[] arr = rnd.ints(n, -10000, 10000).toArray();
         int[] expected = arr.clone();
         Arrays.sort(expected);
-        mergeSort.sort(arr);
+        mergesort.sort(arr);
         assertArrayEquals(expected, arr);
     }
 
@@ -41,7 +41,7 @@ class mergesorttest {
         Random rnd = new Random(1);
         int[] arr = rnd.ints(500, 0, 1000).toArray();
         metrics m = new metrics();
-        mergeSort.sort(arr, m);
+        mergesort.sort(arr, m);
         // correctness
         int[] expected = arr.clone();
         Arrays.sort(expected);

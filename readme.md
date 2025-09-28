@@ -72,3 +72,16 @@ Branches:
   - Small arrays with edge cases.
   - Randomized trials compared against sorted arrays.
 - Commit message: feat(select): deterministic select (MoM5) + tests
+
+### Step 7: Closest Pair Implementation
+- Implemented Closest Pair of Points in 2D using divide-and-conquer.
+- Features:
+  - Sort by x, recursive split.
+  - Merge step with strip check (7–8 neighbors rule).
+  - Metrics tracking: comparisons, recursion depth, allocations.
+- Added unit tests:
+  - Small fixed cases.
+  - Random inputs up to n = 2000 (validated against O(n^2) brute force).
+  - Large stress test (n = 50k) with metrics.
+- Verified correctness and efficiency.
+- Commit message: feat(closest): divide-and-conquer implementation + tests

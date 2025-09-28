@@ -9,11 +9,11 @@ import org.algos.util.sortutils;
  * - small-n cutoff to insertion sort (CUT_OFF)
  * - optional Metrics parameter to collect comparisons/allocations/depth
  */
-public final class mergeSort {
+public final class mergesort {
 
     private static final int CUT_OFF = 16;
 
-    private mergeSort() {}
+    private mergesort() {}
 
     /** Public API without metrics */
     public static void sort(int[] a) {
