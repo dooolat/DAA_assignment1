@@ -48,3 +48,16 @@ Branches:
   - Metrics tracking: comparisons, swaps, recursion depth, and elapsed time.
 - Added unit tests for correctness on random and adversarial arrays.
 - Verified recursion depth and metrics collection via `Metrics` module.
+
+### Step 5: Utilities Refactor (SortUtils)
+
+- Created SortUtils.java with reusable utility methods:
+  - swap(int[] arr, int i, int j) — swaps elements.
+  - shuffle(int[] arr, Random rand) — Fisher–Yates shuffle.
+  - guardNotNull(Object obj, String msg) — checks null arguments.
+- Updated MergeSort and QuickSort to use SortUtils.swap where applicable.
+- Added unit tests in SortUtilsTest.java:
+  - Verify swapping correctness.
+  - Verify shuffling randomness and bounds.
+  - Verify null guard throws exception.
+- Commit message: feat(util): partition, swap, shuffle, guards.
