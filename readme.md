@@ -85,3 +85,9 @@ Branches:
   - Large stress test (n = 50k) with metrics.
 - Verified correctness and efficiency.
 - Commit message: feat(closest): divide-and-conquer implementation + tests
+
+### Step 8: Timer + CLI App
+- Added `timer` utility to measure execution time in milliseconds.
+- Integrated with CLI (`app.java`) for running algorithms via `--algo`, `--n`, `--out`.
+- CSV writer exports results with algorithm, input size, and elapsed time
+
