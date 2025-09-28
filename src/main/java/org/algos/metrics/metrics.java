@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * Дизайн: экземпляр Metrics используется на один эксперимент/прогон.
  */
-public final class Metrics {
+public final class metrics {
     private final AtomicLong comparisons = new AtomicLong(0);
     private final AtomicLong allocations = new AtomicLong(0);
     private final AtomicInteger maxDepth = new AtomicInteger(0);

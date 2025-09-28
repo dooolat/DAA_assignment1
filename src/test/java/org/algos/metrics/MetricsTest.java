@@ -7,7 +7,7 @@ class MetricsTest {
 
     @Test
     void depthTrackingWorks() {
-        Metrics m = new Metrics();
+        metrics m = new metrics();
         m.enterRecursion(); // depth = 1
         m.enterRecursion(); // depth = 2
         m.exitRecursion();  // back to 1
@@ -17,7 +17,7 @@ class MetricsTest {
 
     @Test
     void countersWork() {
-        Metrics m = new Metrics();
+        metrics m = new metrics();
         m.incComparisons();
         m.addAllocations(5);
         assertEquals(1, m.getComparisons());
@@ -26,7 +26,7 @@ class MetricsTest {
 
     @Test
     void timerWorks() throws InterruptedException {
-        Metrics m = new Metrics();
+        metrics m = new metrics();
         m.startTimer();
         Thread.sleep(10); // короткая пауза — гарантированно >0 ms
         m.stopTimer();

@@ -34,9 +34,9 @@ Branches:
 ### Step 3: MergeSort Implementation
 - Implemented MergeSort using divide-and-conquer (Master Theorem Case 2).
 - Features:
-    - Linear merge.
-    - Reusable buffer to minimize allocations.
-    - Small-n cut-off with Insertion Sort.
+  - Linear merge.
+  - Reusable buffer to minimize allocations.
+  - Small-n cut-off with Insertion Sort.
 - Added unit tests for correctness and performance.
 - Verified recursion depth and comparison counters via metrics.
 
@@ -50,7 +50,6 @@ Branches:
 - Verified recursion depth and metrics collection via `Metrics` module.
 
 ### Step 5: Utilities Refactor (SortUtils)
-
 - Created SortUtils.java with reusable utility methods:
   - swap(int[] arr, int i, int j) — swaps elements.
   - shuffle(int[] arr, Random rand) — Fisher–Yates shuffle.
@@ -61,3 +60,15 @@ Branches:
   - Verify shuffling randomness and bounds.
   - Verify null guard throws exception.
 - Commit message: feat(util): partition, swap, shuffle, guards.
+
+### Step 6: Deterministic Select (Median-of-Medians)
+- Implemented deterministic selection algorithm (MoM with groups of 5).
+- Features:
+  - Guarantees linear-time selection in worst case.
+  - Tracks comparisons, recursion depth via `Metrics`.
+  - Handles edge cases (single element, duplicates, negative numbers).
+- Added unit tests in `deterministicselecttest.java`:
+  - Single-element arrays.
+  - Small arrays with edge cases.
+  - Randomized trials compared against sorted arrays.
+- Commit message: feat(select): deterministic select (MoM5) + tests
