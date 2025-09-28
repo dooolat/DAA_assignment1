@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read benchmark results
-df = pd.read_csv("results.csv", decimal=',')  # decimal=',' for correct numbers
+df = pd.read_csv("../results.csv", decimal=',')  # decimal=',' for correct numbers
 
 # Extract times for each algorithm
 n_values = df["Param: n"].unique()
