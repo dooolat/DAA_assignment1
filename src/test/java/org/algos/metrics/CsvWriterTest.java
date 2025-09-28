@@ -14,16 +14,16 @@ class CsvWriterTest {
         Path tmp = Files.createTempFile("metrics_test", ".csv");
         tmp.toFile().deleteOnExit();
 
-        String header = Metrics.csvHeader();
-        CsvWriter.writeHeaderIfMissing(tmp, header);
+        String header = metrics.csvHeader();
+        csvwriter.writeHeaderIfMissing(tmp, header);
 
-        Metrics m = new Metrics();
+        metrics m = new metrics();
         m.startTimer();
         m.incComparisons();
         m.addAllocations(3);
         m.stopTimer();
 
-        CsvWriter.appendLine(tmp, m.toCsvLine(10));
+        csvwriter.appendLine(tmp, m.toCsvLine(10));
 
         List<String> lines = Files.readAllLines(tmp);
         assertTrue(lines.size() >= 2);

@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * Маленький утиль для записи CSV: создание заголовка (если нет) и дописывание строк.
  */
-public final class CsvWriter {
+public final class csvwriter {
 
-    private CsvWriter() {}
+    private csvwriter() {}
 
     public static void writeHeaderIfMissing(Path path, String header) throws IOException {
         if (Files.notExists(path)) {
