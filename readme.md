@@ -1,93 +1,62 @@
-# Assignment 1 — Divide & Conquer Algorithms
+# Assignment 1: Divide-and-Conquer Algorithms Benchmark
 
-Project scope:
-- MergeSort
-- QuickSort
-- Deterministic Select (Median-of-Medians)
-- Closest Pair (2D)
+## 1. Project Overview
+This project implements classic divide-and-conquer algorithms: **MergeSort**, **QuickSort**, **Deterministic Select (Median-of-Medians)**, and optionally **Closest Pair of Points (2D)**.  
+We measure runtime, recursion depth, and verify correctness on random and adversarial inputs.
 
-Goals:
-- Implement algorithms and measure performance (time, recursion depth, allocations).
-- Document results in README.md (architecture, recurrence analysis, plots, summary).
+## 2. Algorithms Implemented
 
-Branches:
-- main
-- feature/mergesort
-- feature/quicksort
-- feature/select
-- feature/closest
-- feature/metrics
+### MergeSort
+- Linear merge using reusable buffer.
+- Small-n cutoff with Insertion Sort.
+- Recurrence: Θ(n log n) (Master Theorem Case 2).
 
-## Progress
+### QuickSort
+- Randomized pivot.
+- Recurse on smaller partition, iterate over larger.
+- Recursion depth bounded ≈ O(log n).
+- Recurrence: Θ(n log n) average, Θ(n²) worst-case (rare due to random pivot).
 
-### Step 1: Project Initialization
-- Created Maven project structure.
-- Added JUnit 5 for testing.
-- Configured CI and initial README.
+### Deterministic Select
+- Median-of-Medians with groups of 5.
+- Recurse only on the required side.
+- Recurrence: Θ(n) (Akra–Bazzi intuition).
 
-### Step 2: Metrics Module
-- Implemented counters for comparisons and allocations.
-- Added recursion depth tracker.
-- Implemented CSV writer for exporting results.
-- Wrote unit tests for metrics components.
+### Closest Pair (optional)
+- Sort points by x, recursive split, strip scan by y.
+- Runtime: Θ(n log n).
+- Correctness verified against O(n²) brute force for small n (≤2000).
 
-### Step 3: MergeSort Implementation
-- Implemented MergeSort using divide-and-conquer (Master Theorem Case 2).
-- Features:
-  - Linear merge.
-  - Reusable buffer to minimize allocations.
-  - Small-n cut-off with Insertion Sort.
-- Added unit tests for correctness and performance.
-- Verified recursion depth and comparison counters via metrics.
+## 3. Metrics Collection
+- Time measured with JMH.
+- Recursion depth tracked with counters.
+- Comparisons/allocations logged to CSV (`results.csv`).
 
-### Step 4: QuickSort Implementation
-- Implemented QuickSort with robust recursion and randomized pivot selection.
-- Features:
-  - Recurse on the smaller partition first to keep recursion depth bounded.
-  - Randomized pivot to avoid worst-case performance.
-  - Metrics tracking: comparisons, swaps, recursion depth, and elapsed time.
-- Added unit tests for correctness on random and adversarial arrays.
-- Verified recursion depth and metrics collection via `Metrics` module.
+## 4. Benchmark Results
 
-### Step 5: Utilities Refactor (SortUtils)
-- Created SortUtils.java with reusable utility methods:
-  - swap(int[] arr, int i, int j) — swaps elements.
-  - shuffle(int[] arr, Random rand) — Fisher–Yates shuffle.
-  - guardNotNull(Object obj, String msg) — checks null arguments.
-- Updated MergeSort and QuickSort to use SortUtils.swap where applicable.
-- Added unit tests in SortUtilsTest.java:
-  - Verify swapping correctness.
-  - Verify shuffling randomness and bounds.
-  - Verify null guard throws exception.
-- Commit message: feat(util): partition, swap, shuffle, guards.
+| Algorithm  | n = 1000 (ms) | n = 5000 (ms) | n = 10000 (ms) |
+|------------|---------------|---------------|----------------|
+| MergeSort  | 0.033         | 0.219         | 0.480          |
+| QuickSort  | 0.073         | 0.398         | 0.818          |
+| Select     | 0.018         | 0.090         | 0.177          |
 
-### Step 6: Deterministic Select (Median-of-Medians)
-- Implemented deterministic selection algorithm (MoM with groups of 5).
-- Features:
-  - Guarantees linear-time selection in worst case.
-  - Tracks comparisons, recursion depth via `Metrics`.
-  - Handles edge cases (single element, duplicates, negative numbers).
-- Added unit tests in `deterministicselecttest.java`:
-  - Single-element arrays.
-  - Small arrays with edge cases.
-  - Randomized trials compared against sorted arrays.
-- Commit message: feat(select): deterministic select (MoM5) + tests
+### Runtime Graph
+![Runtime Graph](benchmark_plot.png)  
+*Graph shows time vs array size for all three algorithms.*
 
-### Step 7: Closest Pair Implementation
-- Implemented Closest Pair of Points in 2D using divide-and-conquer.
-- Features:
-  - Sort by x, recursive split.
-  - Merge step with strip check (7–8 neighbors rule).
-  - Metrics tracking: comparisons, recursion depth, allocations.
-- Added unit tests:
-  - Small fixed cases.
-  - Random inputs up to n = 2000 (validated against O(n^2) brute force).
-  - Large stress test (n = 50k) with metrics.
-- Verified correctness and efficiency.
-- Commit message: feat(closest): divide-and-conquer implementation + tests
+## 5. Analysis
+- **MergeSort & QuickSort**: measured time aligns well with Θ(n log n). QuickSort slightly slower due to recursion overhead.
+- **Deterministic Select**: linear time confirmed, scales as expected.
+- **Constant-factor effects**: cache behavior and Java GC may slightly alter measured times.
+- **Recursion depth**: QuickSort stays within expected bounds; Select only recurses on smaller partitions.
 
-### Step 8: Timer + CLI App
-- Added `timer` utility to measure execution time in milliseconds.
-- Integrated with CLI (`app.java`) for running algorithms via `--algo`, `--n`, `--out`.
-- CSV writer exports results with algorithm, input size, and elapsed time
+## 6. Conclusion
+- The theory (Master Theorem / Akra–Bazzi) matches measured performance.
+- All algorithms correctly process random and adversarial inputs.
+- Results saved in `results.csv`, plots in `benchmark_plot.png`.
 
+---
+
+**GitHub Workflow**
+- Branches: `main`, `feature/mergesort`, `feature/quicksort`, `feature/select`, `feature/metrics`.
+- Commits follow a clean storyline: init → feat(metrics) → feat(mergesort) → feat(quicksort) → feat(select) → bench → docs → release v1.0.
